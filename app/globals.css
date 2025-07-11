@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .rounded-custom {
+    border-radius: var(--radius);
+  }
+}
+
+:root {
+  /* Default (Light) */
+  --background: #ffffff;
+  --foreground: #121212;
+  --muted: #f3f3f3;
+  --border: #e2e8f0;
+
+  /* Default Accent (Experience 1) */
+  --accent: #e30062; /* Updated */
+  --radius: 10px;
+
+  /* Default Fonts */
+  --font-title: var(--font-montserrat);
+  --font-text: var(--font-open-sans);
+
+  /* Button Colors (derived from accent and base colors) */
+  --button-primary-bg: var(--accent);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: var(--accent);
+  --button-secondary-border: var(--accent);
+  --button-tertiary-bg: var(--muted);
+  --button-tertiary-text: var(--foreground);
+  --button-link-text: var(--accent);
+
+  /* Section 2 Background */
+  --section2-bg: var(--muted);
+}
+
+.dark {
+  /* Default Dark Mode */
+  --background: #121212;
+  --foreground: #f5f5f5;
+  --muted: #1e1e1e;
+  --border: #2d3748;
+
+  /* Dark mode button colors */
+  --button-primary-bg: var(--accent);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: var(--accent);
+  --button-secondary-border: var(--accent);
+  --button-tertiary-bg: var(--muted);
+  --button-tertiary-text: var(--foreground);
+  --button-link-text: var(--accent);
+
+  /* Section 2 Background */
+  --section2-bg: var(--muted);
+}
+
+/* Experience 1: Enterprise */
+.exp-enterprise {
+  --accent: #e30062; /* Updated */
+  --radius: 20px;
+  --font-title: var(--font-montserrat);
+  --font-text: var(--font-open-sans);
+
+  /* Section 2 Background for Enterprise */
+  --section2-bg: var(--accent);
+
+  .dark {
+    --background: #1a1a1a;
+    --foreground: #f0f0f0;
+    --muted: #2a2a2a;
+    --border: #3a3a3a;
+    --section2-bg: var(--accent);
+  }
+}
+
+/* Experience 2: Playful */
+.exp-playful {
+  --accent: #00dbb3; /* Updated */
+  --radius: 50px;
+  --font-title: var(--font-unica-one);
+  --font-text: var(--font-quicksand);
+
+  /* Section 2 Background for Playful */
+  --section2-bg: var(--accent);
+
+  .dark {
+    --background: #181818;
+    --foreground: #f8f8f8;
+    --muted: #282828;
+    --border: #383838;
+    --section2-bg: var(--accent);
+  }
+}
+
+/* Experience 3: Comic */
+.exp-comic {
+  --accent: #a9a9a9; /* Updated */
+  --radius: 0px;
+  --font-title: var(--font-cardo);
+  --font-text: var(--font-josefin-sans);
+
+  /* Section 2 Background for Comic */
+  --section2-bg: var(--accent);
+
+  .dark {
+    --background: #151515;
+    --foreground: #fcfcfc;
+    --muted: #252525;
+    --border: #353535;
+    --section2-bg: var(--accent);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-text); /* Default text font for body */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography classes */
+.title-font {
+  font-family: var(--font-title);
+}
+
+.text-font {
+  font-family: var(--font-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus styles */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: var(--radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+/* Button Styles */
+@layer components {
+  .btn-primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    @apply px-6 py-3 rounded-custom font-medium hover:opacity-90 transition-opacity focus-ring text-font; /* Apply text-font */
+  }
+
+  .btn-secondary {
+    background-color: transparent; /* Keep background transparent */
+    color: var(--background); /* Use background color for text for contrast */
+    border: 2px solid var(--background); /* Use background color for border for contrast */
+    @apply px-6 py-3 rounded-custom font-medium hover:bg-accent hover:text-white transition-colors focus-ring text-font; /* Apply text-font */
+  }
+
+  .btn-tertiary {
+    background-color: var(--button-tertiary-bg);
+    color: var(--button-tertiary-text);
+    @apply px-6 py-3 rounded-custom font-medium hover:opacity-80 transition-opacity focus-ring text-font; /* Apply text-font */
+  }
+
+  .btn-link {
+    color: var(--button-link-text);
+    @apply underline hover:no-underline transition-colors focus-ring text-font; /* Apply text-font */
+  }
+}
