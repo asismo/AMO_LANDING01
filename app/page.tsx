@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Linkedin } from "lucide-react" // Import Linkedin icon
 import Image from "next/image"
 import Header from "@/components/header"
 import { copy, type Language, type Experience } from "@/lib/copy"
@@ -117,6 +117,7 @@ export default function LandingPage() {
                   {currentCopy.heroBody}
                 </p>
 
+                {/* Removed LinkedIn icon from here */}
                 <motion.a
                   href="https://www.figma.com/deck/SXaKdBwH5gTEfG8RXrXTOv"
                   target="_blank"
@@ -174,6 +175,18 @@ export default function LandingPage() {
                 <p className="text-lg text-foreground/80 max-w-3xl mx-auto md:mx-0 text-font">
                   {currentCopy.rebuildBody}
                 </p>
+                {/* LinkedIn Icon - Moved to this location */}
+                <motion.a
+                  href="https://www.linkedin.com/in/asismartinoar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-foreground text-foreground hover:bg-accent hover:text-white transition-colors focus-ring mt-4" // Added mt-4 for spacing
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="LinkedIn profile"
+                >
+                  <Linkedin size={24} />
+                </motion.a>
               </div>
 
               {/* Right Column: CTA */}
