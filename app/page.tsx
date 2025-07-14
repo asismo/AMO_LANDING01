@@ -177,7 +177,7 @@ export default function LandingPage() {
               </div>
 
               {/* Right Column: CTA */}
-              <div className="text-center md:text-right">
+              <div className="text-center md:text-center">
                 <motion.a
                   href="https://www.asismartinoar.com"
                   target="_blank"
@@ -206,7 +206,7 @@ export default function LandingPage() {
                 {currentCopy.mediumCall.split("→")[0].trim()}
               </h3>
               <motion.a
-                href="https://medium.com/@asismartinoar/how-i-vibe-coded-this"
+                href="https://medium.com/@asismartinoar/vibe-coding-a-landing-page-in-one-day-from-firebase-studio-to-v0-297f5a2e72ec"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 btn-link"

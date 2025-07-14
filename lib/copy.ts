@@ -1,3 +1,6 @@
+export type Language = "en" | "es"
+export type Experience = "enterprise" | "playful" | "comic"
+
 export const copy = {
   en: {
     heroSubtitle: "Hi! I'm Asís.",
@@ -27,8 +30,8 @@ export const copy = {
     rebuildBody:
       "Estoy reconstruyendo mi sitio web. Mientras tanto, visita el antiguo para ver casos de estudio completos y más información.",
     oldSiteCTA: "Ir a mi Sitio Web →",
-    mediumCall: "Lee cómo vibecodié esta Página →",
-    footer: "Vibe-codificado en un día con React, Tailwind & Framer Motion, usando V0.",
+    mediumCall: "Lee cómo codifiqué con IA esta Landing →",
+    footer: "Vibe Coded en un día con React, Tailwind & Framer Motion, usando V0.",
     // experienceLabel: "Experiencia:", // Removed
     experiences: {
       enterprise: "Empresarial",
@@ -37,7 +40,9 @@ export const copy = {
     },
     uxLabel: "UX //", // Updated to be consistent
   },
-} as const
-
-export type Language = keyof typeof copy
-export type Experience = "enterprise" | "playful" | "comic"
+} satisfies Record<
+  Language,
+  {
+    experiences: Record<Experience, string>
+  }
+>

@@ -84,7 +84,6 @@ export default function Header({ language, setLanguage, experience, setExperienc
         {/* Experience Switcher (Center) */}
         <div className="flex items-center justify-center gap-2 sm:gap-3">
           {/* Hide "UX //" on small screens */}
-          <span className="text-sm font-medium text-font hidden sm:inline">{copy[language].uxLabel}</span>
           <div className="flex gap-2">
             {experiences.map(({ id, color }) => (
               <motion.button
