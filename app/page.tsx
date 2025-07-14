@@ -7,6 +7,51 @@ import Image from "next/image"
 import Header from "@/components/header"
 import { copy, type Language, type Experience } from "@/lib/copy"
 
+// Import fonts
+import { Montserrat, Open_Sans } from "next/font/google"
+import { Unica_One } from "next/font/google"
+import { Quicksand } from "next/font/google"
+import { Cardo } from "next/font/google"
+import { Josefin_Sans } from "next/font/google"
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+})
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans",
+  display: "swap",
+})
+
+const unicaOne = Unica_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-unica-one",
+  display: "swap",
+})
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
+  display: "swap",
+})
+
+const cardo = Cardo({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-cardo",
+  display: "swap",
+})
+
+const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  variable: "--font-josefin-sans",
+  display: "swap",
+})
+
 export default function LandingPage() {
   const [language, setLanguage] = useState<Language>("en")
   const [experience, setExperience] = useState<Experience>("enterprise")
@@ -31,20 +76,22 @@ export default function LandingPage() {
   const getSlideImage = () => {
     switch (experience) {
       case "enterprise":
-        return "/enterprise-slide.png"
+        return "/mainpic_e1.jpg"
       case "playful":
-        return "/playful-slide.png"
+        return "/mainpic_e2.jpg"
       case "comic":
-        return "/comic-slide.png"
+        return "/mainpic_e3.jpg"
       default:
-        return "/placeholder-slide.png"
+        return "/mainpic_e1.jpg" // Default to enterprise image if experience is not matched
     }
   }
 
   const currentCopy = copy[language]
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div
+      className={`${montserrat.variable} ${openSans.variable} ${unicaOne.variable} ${quicksand.variable} ${cardo.variable} ${josefinSans.variable} font-sans`}
+    >
       <Header language={language} setLanguage={setLanguage} experience={experience} setExperience={setExperience} />
 
       <main className="pt-24">
@@ -71,7 +118,7 @@ export default function LandingPage() {
                 </p>
 
                 <motion.a
-                  href="https://www.figma.com/deck"
+                  href="https://www.figma.com/deck/SXaKdBwH5gTEfG8RXrXTOv"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 btn-primary"
@@ -91,7 +138,7 @@ export default function LandingPage() {
                 className="relative"
               >
                 <motion.a
-                  href="https://www.figma.com/deck"
+                  href="https://www.figma.com/deck/SXaKdBwH5gTEfG8RXrXTOv" // Updated link
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block focus-ring rounded-custom overflow-hidden"
@@ -101,9 +148,9 @@ export default function LandingPage() {
                   <Image
                     src={getSlideImage() || "/placeholder.svg"}
                     alt="Design presentation slide"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto rounded-custom shadow-2xl"
+                    width={600} // Set a consistent width
+                    height={600} // Set a consistent height, adjust if images are not square
+                    className="w-full h-auto rounded-custom shadow-2xl object-contain" // Use object-contain to prevent cropping if aspect ratio varies
                     priority
                   />
                 </motion.a>
@@ -135,7 +182,7 @@ export default function LandingPage() {
                   href="https://www.asismartinoar.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 btn-secondary"
+                  className="inline-flex items-center gap-2 btn-secondary-on-accent"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                 >

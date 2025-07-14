@@ -14,10 +14,15 @@
   --foreground: #121212;
   --muted: #f3f3f3;
   --border: #e2e8f0;
+  --input: #e2e8f0;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --secondary: #f3f3f3;
+  --ring: #121212;
 
   /* Default Accent (Experience 1) */
   --accent: #e30062; /* Updated */
-  --radius: 10px;
+  --radius: 20px; /* Updated border-radius */
 
   /* Default Fonts */
   --font-title: var(--font-montserrat);
@@ -38,13 +43,18 @@
 }
 
 .dark {
-  /* Default Dark Mode */
+  /* Neutral charcoal base */
   --background: #121212;
-  --foreground: #f5f5f5;
-  --muted: #1e1e1e;
-  --border: #2d3748;
+  --foreground: #f5f5f5; /* Light text for contrast */
+  --muted: #181818; /* Slightly lighter for muted elements */
+  --border: #2d3748; /* Darker border for subtle separation */
+  --input: #2d3748;
+  --card: #181818;
+  --popover: #1f1f1f;
+  --secondary: #1f1f1f;
+  --ring: #a0a0a0; /* Visible ring color */
 
-  /* Dark mode button colors */
+  /* Dark mode button colors (these will use the accent from the active experience) */
   --button-primary-bg: var(--accent);
   --button-primary-text: #ffffff;
   --button-secondary-bg: transparent;
@@ -54,14 +64,14 @@
   --button-tertiary-text: var(--foreground);
   --button-link-text: var(--accent);
 
-  /* Section 2 Background */
+  /* Section 2 Background (this will be set by the active experience) */
   --section2-bg: var(--muted);
 }
 
 /* Experience 1: Enterprise */
 .exp-enterprise {
-  --accent: #e30062; /* Updated */
-  --radius: 20px;
+  --accent: #ff006d; /* Updated */
+  --radius: 20px; /* Updated border-radius */
   --font-title: var(--font-montserrat);
   --font-text: var(--font-open-sans);
 
@@ -69,18 +79,15 @@
   --section2-bg: var(--accent);
 
   .dark {
-    --background: #1a1a1a;
-    --foreground: #f0f0f0;
-    --muted: #2a2a2a;
-    --border: #3a3a3a;
+    /* Only override accent and section2-bg for dark mode within this experience */
     --section2-bg: var(--accent);
   }
 }
 
 /* Experience 2: Playful */
 .exp-playful {
-  --accent: #00dbb3; /* Updated */
-  --radius: 50px;
+  --accent: #33dba7; /* Updated */
+  --radius: 20px; /* Updated border-radius */
   --font-title: var(--font-unica-one);
   --font-text: var(--font-quicksand);
 
@@ -88,18 +95,15 @@
   --section2-bg: var(--accent);
 
   .dark {
-    --background: #181818;
-    --foreground: #f8f8f8;
-    --muted: #282828;
-    --border: #383838;
+    /* Only override accent and section2-bg for dark mode within this experience */
     --section2-bg: var(--accent);
   }
 }
 
 /* Experience 3: Comic */
 .exp-comic {
-  --accent: #a9a9a9; /* Updated */
-  --radius: 0px;
+  --accent: #ff8d22; /* Updated */
+  --radius: 20px; /* Updated border-radius */
   --font-title: var(--font-cardo);
   --font-text: var(--font-josefin-sans);
 
@@ -107,10 +111,7 @@
   --section2-bg: var(--accent);
 
   .dark {
-    --background: #151515;
-    --foreground: #fcfcfc;
-    --muted: #252525;
-    --border: #353535;
+    /* Only override accent and section2-bg for dark mode within this experience */
     --section2-bg: var(--accent);
   }
 }
@@ -132,13 +133,9 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Typography classes */
-.title-font {
-  font-family: var(--font-title);
-}
-
-.text-font {
-  font-family: var(--font-text);
+/* Remove dark mode specific body styles for overlays */
+.dark body {
+  /* No background-image for overlays */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -150,6 +147,15 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Typography classes */
+.title-font {
+  font-family: var(--font-title);
+}
+
+.text-font {
+  font-family: var(--font-text);
 }
 
 /* Focus styles */
@@ -187,9 +193,16 @@ body {
 
   .btn-secondary {
     background-color: transparent; /* Keep background transparent */
-    color: var(--background); /* Use background color for text for contrast */
-    border: 2px solid var(--background); /* Use background color for border for contrast */
+    color: var(--foreground); /* Use foreground color for text */
+    border: 2px solid var(--foreground); /* Use foreground color for border */
     @apply px-6 py-3 rounded-custom font-medium hover:bg-accent hover:text-white transition-colors focus-ring text-font; /* Apply text-font */
+  }
+
+  .btn-secondary-on-accent {
+    background-color: white;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    @apply px-6 py-3 rounded-custom font-medium hover:bg-white/90 transition-colors focus-ring text-font;
   }
 
   .btn-tertiary {
